@@ -1,0 +1,304 @@
+var ss = SpreadsheetApp.openByUrl("https://docs.google.com/spreadsheets/d/1ePZ7v-FS-lD7LfVLNW6igDSp19I6pFs3IzQKVbOybbw/edit");
+var sheet = ss.getSheetByName("ภาษาไทย");
+function doPost(e) {
+   
+  var data = JSON.parse(e.postData.contents)
+  var userMsg = data.originalDetectIntentRequest.payload.data.message.text;
+  var values = sheet.getRange(2, 1, sheet.getLastRow(),sheet.getLastColumn()).getValues();
+for(var i = 0;i<values.length; i++){
+    
+    if(values[i][0] == userMsg ){
+      i=i+2; 
+var Data1 = sheet.getRange(i,2).getValue(); //บอกชื่อ
+var Data2 = sheet.getRange(i,3).getValue(); //คะแนนเก็บ1(คอม)
+var Data3 = sheet.getRange(i,4).getValue(); //คะแนนเก็บ2(คอม)
+var Data4 = sheet.getRange(i,5).getValue(); //คะแนนสอบย่อย(คอม)
+var Data5 = sheet.getRange(i,6).getValue(); //คะแนนสอบ(คอม)
+var Teacher = sheet.getRange(i,7).getValue();//ครู
+var Data6 = sheet.getRange(i,8).getValue(); //คะแนนเก็บ1(อังกิด)
+var Data7 = sheet.getRange(i,9).getValue(); //คะแนนเก็บ2(อังกิด)
+var Data8 = sheet.getRange(i,10).getValue();//คะแนนสอบย่อย(อังกิด)  
+var Data9 = sheet.getRange(i,11).getValue();//คะแนนสอบ(อังกิด)
+var Teacher1 = sheet.getRange(i,12).getValue();//ครู
+var Data10 = sheet.getRange(i,13).getValue(); //คะแนนเก็บ1(คณิต)
+var Data11 = sheet.getRange(i,14).getValue(); //คะแนนเก็บ2(คณิต)
+var Data12= sheet.getRange(i,15).getValue(); //คะแนนสอบย่อย(คณิต)
+var Data13 = sheet.getRange(i,16).getValue(); //คะแนนสอบ(คณิต)
+var Teacher2 = sheet.getRange(i,17).getValue();//ครู
+var Data14 = sheet.getRange(i,18).getValue(); //คะแนนเก็บ1(ฟิ)
+var Data15 = sheet.getRange(i,19).getValue(); //คะแนนเก็บ2(ฟิ)
+var Data16 = sheet.getRange(i,20).getValue();//คะแนนสอบย่อย(ฟิ)  
+var Data17 = sheet.getRange(i,21).getValue();//คะแนนสอบ(ฟิ)
+var Teacher3 = sheet.getRange(i,22).getValue();//ครู
+var Data18 = sheet.getRange(i,23).getValue(); //คะแนนเก็บ1(Chem)
+var Data19 = sheet.getRange(i,24).getValue(); //คะแนนเก็บ2(Chem)
+var Data20 = sheet.getRange(i,25).getValue();//คะแนนสอบย่อย(Chem)  
+var Data21 = sheet.getRange(i,26).getValue();//คะแนนสอบ(Chem)
+var Teacher4 = sheet.getRange(i,27).getValue();//ครู
+var Data22 = sheet.getRange(i,28).getValue(); //คะแนนเก็บ1(Bio)
+var Data23 = sheet.getRange(i,29).getValue(); //คะแนนเก็บ2(Bio)
+var Data24 = sheet.getRange(i,30).getValue();//คะแนนสอบย่อย(Bio)  
+var Data25 = sheet.getRange(i,31).getValue();//คะแนนสอบ(Bio)
+var Teacher5 = sheet.getRange(i,32).getValue();//ครู
+var Data26 = sheet.getRange(i,33).getValue(); //คะแนนเก็บ1(Earth)
+var Data27 = sheet.getRange(i,34).getValue(); //คะแนนเก็บ2(Earth)
+var Data28 = sheet.getRange(i,35).getValue();//คะแนนสอบย่อย(Earth)  
+var Data29 = sheet.getRange(i,36).getValue();//คะแนนสอบ(Earth)
+var Teacher6 = sheet.getRange(i,37).getValue();//ครู
+var Showimg = sheet.getRange(i,38).getValue();//รูปภาพ
+
+     var result = {
+    "fulfillmentMessages": [
+  {
+    "platform": "line",
+    "type": 4,
+    "payload" : {
+    "line":  {  
+  "type": "flex",
+  "altText": "แสดงผลข้อมูล",
+  "contents": 
+{
+  "type": "bubble",
+  "size": "giga",
+  "hero": {
+"type": "image",
+"url": Showimg,
+"size": "full",
+"aspectRatio": "1.51:1",
+"aspectMode": "fit"
+},
+  "body": {
+    "type": "box",
+    "layout": "vertical",
+    "backgroundColor": "#FFFFE0",
+    "contents": [
+      {
+        "type": "text",
+        "text": ":: สรุปคะแนนทั้งหมด ::",
+        "weight": "bold",
+        "align": "center",
+        "color": "#0000ff"
+      },
+      {
+        "type": "text",
+        "text":  Data1,
+        "weight": "bold",
+        "size": "xl",
+        "align": "center",
+        "color": "#FF7F50"
+      },
+      { 
+        "type": "text",
+        "text":  " วิชาวิทยาการคอมพิวเตอร์ ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data2+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data3+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data4+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data5+" คะแนน"
+      },
+       {
+        "type": "text",
+        "text": "ครูผู้สอน อ.ธีรกาญจน์ ปกรณ์ สันโส  : "+Teacher
+      },
+      
+      { 
+        "type": "text",
+        "text":  " วิชาภาษาอังกฤษ ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data6+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data7+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data8+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data9+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "ครูผู้สอน  : "+Teacher1
+      },
+        { 
+        "type": "text",
+        "text":  " วิชาคณิตศาสตร์ ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data10+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data11+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data12+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data13+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "ครูผู้สอน อ.ทรรศนพรรณ พิทยาพละ  : "+Teacher2
+      },
+          { 
+        "type": "text",
+        "text":  " วิชาฟิสิกส์ ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data14+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data15+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data16+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data17+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "ครูผู้สอน ศุภาวรรณ ห่วงช้าง  : "+Teacher3
+      },
+          { 
+        "type": "text",
+        "text":  " วิชาเคมี ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data18+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data19+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data20+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data21+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "ครูผู้สอน อ.วุฒิกร จันทร์มาก  : "+Teacher4
+      },
+          { 
+        "type": "text",
+        "text":  " วิชาชีววิทยา ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data22+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data23+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data24+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data25+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "ครูผู้สอน อ.สุนิสา คงคาลัย  : "+Teacher5
+      },
+          { 
+        "type": "text",
+        "text":  " วิชาโลกศาสตร์ ",
+        "weight": "bold",
+        "size": "lg",
+        "align": "center",
+        "color": "#FFB6C1"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ1 : "+Data26+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนเก็บ2 : "+Data27+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบย่อย : "+Data28+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "คะแนนสอบ : "+Data29+" คะแนน"
+      },
+      {
+        "type": "text",
+        "text": "ครูผู้สอน ว่าที่ร้อยตรีวัฒนะ รัมมะเอ็ด  : "+Teacher6
+      },
+      
+     
+              ]
+            }
+          }
+        }
+      }
+    }
+              ]
+            }
+      
+    var replyJSON = ContentService.createTextOutput(JSON.stringify(result)).setMimeType(ContentService.MimeType.JSON);
+    return replyJSON;
+         }
+     }
+ }
+
+ 
